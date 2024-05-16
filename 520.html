@@ -13,17 +13,54 @@
         p {
             color: white;
         }
+        .star {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            pointer-events: none; /* Prevents stars from interfering with clicks */
+            animation: fall 5s linear;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(calc(100vw - 20px), calc(100vh - 20px));
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
-
     <hr>
     <br>
-    <p>给最喜欢的纹纹酱：</p>
+    <p>给最爱的纹纹酱：</p>
     <p>
         又要到5:20号啦，这是我们在一起后度过的第二个情人节啦，虽然不是在那一天一起度过的不过也很不错的啦。我很爱你小纹，不过我也明白了。爱一个人也要有方式的去爱，而不是一股脑的灌注所谓的爱意，然后带来无尽的烦恼。这次见面前我们有过比较严重的矛盾，真的好想见到你，好想把你抱在怀里啊。真的好想好想，对你做了这么多事我很抱歉。有什么错我肯定会好好改正的我的小公主，你就是我的全世界。相比上次情人节，我们之间的爱情也有了很大的变化，我们更加深爱着对方更加相信依赖着对方了，我们还经历了第一次做爱和很多次做爱，现在的我们身心都比以前更加的依赖着爱着对方了小纹。我的余生都想为我们两个人的美好未来而努力。每天晚上在寝室都会盼望着和小纹的未来，期待着以后每天都能见到小纹的日子，我相信那样的日子就快要到来了。我知道我和你的兴趣爱好不是很一样，但是我总想听你的分享，你讲故事讲事情真的很有趣，就像之前高中晚自习的时候你跟我讲你的梦一样。我知道我不是你想要的那种同好，但是我希望我可以帮上你的忙，希望你有个可以分享兴趣爱好的对象。看着你不高兴的样子我真的好难受好难受，这是我人生中最难受的时刻，我真的好想好想解决所有的一切啊，唉要是我真的有什么超能力就好了，真的感觉无能狂怒啊。小纹，我一定会将我能给你带来的所有都给你带去的，希望以后我能给你更多的幸福。爱你小纹，情人节快乐！
 
     </p>
+
+    <script>
+        document.addEventListener('click', function(event) {
+            const numStars = 100; // Number of stars to create
+            const starSize = 20; // Size of each star
+
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.innerHTML = '🌟';
+                star.style.top = Math.random() * window.innerHeight + 'px';
+                star.style.left = Math.random() * window.innerWidth + 'px';
+                document.body.appendChild(star);
+
+                // Remove star after animation completes
+                star.addEventListener('animationend', function() {
+                    star.parentNode.removeChild(star);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
 
