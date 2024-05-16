@@ -14,6 +14,8 @@
             color: #333;
             margin: 0;
             padding: 0;
+            overflow: hidden;
+            position: relative;
         }
         h2 {
             text-align: center;
@@ -45,7 +47,7 @@
             margin: 10px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            max-width: 100%; /* 让图片在小屏幕上自适应宽度 */
+            max-width: 100%;
         }
         p {
             text-align: center;
@@ -58,18 +60,40 @@
         .centered-text {
             text-align: center;
         }
+        .heart {
+            position: absolute;
+            display: block;
+            font-size: 20px;
+            color: #ff4081; /* 粉红色 */
+            animation: drift linear infinite;
+            transform: rotate(45deg); /* 旋转使爱心倾斜 */
+            opacity: 0; /* 初始透明度为0，渐显动画中逐渐增加透明度 */
+        }
+        @keyframes drift {
+            0% {
+                transform: translateY(-10vh) translateX(100vw) rotate(45deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1; /* 中间点透明度为1 */
+            }
+            100% {
+                transform: translateY(110vh) translateX(-100vw) rotate(45deg);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
     <h2>🌟 欢迎来到<span style="color: #d436f4;">纹纹酱</span>专属的网站：<span style="color: #d436f4;">纹纹之家</span> 🌟 （๑♡ω♡๑）</h2>
     <hr>
     <div class="image-container">
-<img src="./1.jpg" width="200" title="纹纹酱的美照" alt="纹纹酱的美照">
-<img src="./3.jpg" width="200" title="纹纹酱的美照" alt="纹纹酱的美照" >
-<img src="./4.jpg" width="200" title="纹纹酱的美照" alt="纹纹酱的美照" >
-<img src="./8.jpg" width="200" title="纹纹酱的美照" alt="纹纹酱的美照" >
-<img src="./9.jpg" width="200" title="纹纹酱的美照" alt="纹纹酱的美照" >
-<img src="./11.jpg" width="200" title="纹纹酱的美照" alt="纹纹酱的美照" >
+        <img src="./1.jpg" width="200" title="纹纹酱的美照" alt="纹纹酱的美照">
+        <img src="./3.jpg" width="200" title="纹纹酱的美照" alt="纹纹酱的美照" >
+        <img src="./4.jpg" width="200" title="纹纹酱的美照" alt="纹纹酱的美照" >
+        <img src="./8.jpg" width="200" title="纹纹酱的美照" alt="纹纹酱的美照" >
+        <img src="./9.jpg" width="200" title="纹纹酱的美照" alt="纹纹酱的美照" >
+        <img src="./11.jpg" width="200" title="纹纹酱的美照" alt="纹纹酱的美照" >
     </div>
     <p>点击下面的按钮即可获取你的生日祝福哈哈哈 ε(*･ω･)_/ﾟ:･☆</p>    
     <div class="centered-text">
@@ -77,5 +101,26 @@
         <a href="./便利网址.html" target="_blank">🔗 便利网址 🔍</a> 
         <a href="./后语.html" target="_blank">ℹ️ 关于 ℹ️</a> 
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const numHearts = 100; /* 更多的爱心 */
+            const container = document.body;
+
+            for (let i = 0; i < numHearts; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️'; /* 使用 Unicode 字符表示爱心 */
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.animationDuration = Math.random() * 5 + 3 + 's'; /* 调整速度 */
+                container.appendChild(heart);
+
+                heart.addEventListener('animationend', function() {
+                    container.removeChild(this);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
