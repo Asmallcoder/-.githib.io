@@ -10,7 +10,7 @@
             background-image: url('./ww网页背景.avif');
             background-size: cover;
             background-repeat: no-repeat;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Noto Sans SC', Arial, sans-serif; /* 使用温柔可爱的字体 */
             color: #333;
             margin: 0;
             padding: 0;
@@ -32,11 +32,27 @@
             color: #fff;
             border-radius: 5px;
             transition: all 0.3s ease;
+            font-size: 18px;
+            position: relative;
+            overflow: hidden;
         }
         a:hover {
             background-color: #fff;
             color: #f44336;
-            text-decoration: underline double;
+            text-decoration: none;
+        }
+        a::before {
+            content: '😊';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        a:hover::before {
+            left: 10px;
+            opacity: 1;
         }
         .image-container {
             display: flex;
@@ -83,9 +99,44 @@
                 opacity: 0;
             }
         }
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('./star.png');
+            z-index: -1;
+            animation: twinkle 8s infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* Adjustments for smaller screens */
+        @media only screen and (max-width: 768px) {
+            h2 {
+                font-size: 24px; /* Decrease heading size */
+            }
+
+            .image-container img {
+                width: 100%; /* Make images fluid */
+            }
+
+            p {
+                font-size: 16px; /* Decrease paragraph font size */
+            }
+
+            .centered-text {
+                margin-bottom: 10px; /* Reduce margin */
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="stars"></div> <!-- 添加星星动画 -->
+
     <h2>🌟 欢迎来到<span style="color: #d436f4;">纹纹酱</span>专属的网站：<span style="color: #d436f4;">纹纹之家</span> 🌟 （๑♡ω♡๑）</h2>
     <hr>
     <div class="image-container">
@@ -106,7 +157,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const numHearts = 100; /* 更多的爱心 */
+            const numHearts = 150; /* 更多的爱心 */
             const container = document.body;
 
             for (let i = 0; i < numHearts; i++) {
